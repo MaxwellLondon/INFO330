@@ -12,7 +12,7 @@ CREATE TABLE Movies (
     runtime VARCHAR(50),
     title VARCHAR(100),
     language VARCHAR(50),
-	Primary Key (id)
+	PRIMARY KEY (id)
 )
 
 CREATE TABLE Actors (
@@ -53,5 +53,13 @@ CREATE TABLE Role (
     role VARCHAR(50),
     PRIMARY KEY (movie_id, actor_id),
     FOREIGN KEY (actor_id) REFERENCES Actors(id),
+    FOREIGN KEY (movie_id) REFERENCES Movies(id)
+)
+
+CREATE TABLE Directs (
+    movie_id INT,
+    director_id INT,
+    PRIMARY KEY (movie_id, director_id),
+    FOREIGN KEY (director_id) REFERENCES Directors(id),
     FOREIGN KEY (movie_id) REFERENCES Movies(id)
 )
