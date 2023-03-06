@@ -1,0 +1,11 @@
+﻿movie_id,actor_id,role
+1,1,"""John"""
+1,2,"""Jane"""
+2,3,"""Mark"""
+2,4,"""Mary"""
+3,5,"""David"""
+3,6,"""Diana"""
+4,7,"""Chris"""
+4,8,"""Cathy"""
+5,9,"""Tom"""
+5,10,"""Tina"""
