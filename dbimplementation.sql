@@ -63,3 +63,12 @@ CREATE TABLE Directs (
     FOREIGN KEY (director_id) REFERENCES Directors(id),
     FOREIGN KEY (movie_id) REFERENCES Movies(id)
 );
+
+--  create temporary table temp (csv schema);                                                                                                       user_id int,                                                                                                         movie_id int,                                                                                                        time timestamp                                                                                                       );
+-- CREATE TABLE
+-- oscarj23_db=> \copy temp from 'absolute filepath to file' csv header;
+-- COPY 10
+-- oscarj23_db=> insert into table (select * from temp);
+-- INSERT 0 10
+-- oscarj23_db=> select * from table (checking if they inserted)
+-- drop table temp;
