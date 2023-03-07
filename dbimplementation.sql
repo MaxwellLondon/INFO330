@@ -136,3 +136,26 @@ CREATE TABLE Directs (
 -- LEFT JOIN Movies m ON r.movie_id = m.id
 -- GROUP BY m.genre
 -- ORDER BY count(r.rating_id) DESC;
+
+-- What are the average movie ratings by user austenfan for each language? (Administrator)
+-- 1. Show all five star ratings from a user
+-- select username, id, r.score
+-- from appuser u
+-- join rating r on u.id = r.user_id 
+-- 	and r.score > 4;
+
+-- 3. What genre of movies does a specific user review the most?
+-- select u.username, m.genre, max(r.rating_id)
+-- from appuser u
+-- join rating r on u.id = r.user_id
+-- join movies m on m.id = r.movie_id 
+-- where u.username = 'jane.doe'
+-- group by u.username, m.genre
+
+-- 19. What are the average movie ratings for each language? (Administrator)
+
+-- select m.language, ROUND(avg(r.score),2)
+-- from appuser u
+-- join rating r on u.id = r.user_id 
+-- join movies m on r.movie_id = m.id
+-- group by m.language
