@@ -1,10 +1,11 @@
+-- DB: oscarj23_db
 DROP TABLE IF EXISTS Movies;
 DROP TABLE IF EXISTS Actors;
 DROP TABLE IF EXISTS Directors;
 DROP TABLE IF EXISTS Rating;
 DROP TABLE IF EXISTS appUser;
 DROP TABLE IF EXISTS Role;
-
+-- Q1
 CREATE TABLE Movies (
     id INT,
     release DATE,
@@ -63,6 +64,7 @@ CREATE TABLE Directs (
     FOREIGN KEY (director_id) REFERENCES Directors(id),
     FOREIGN KEY (movie_id) REFERENCES Movies(id)
 );
+-- Q2
 
 -- Commands to insert data into tables genericly
 --  create temporary table temp (csv schema);                                                                                                       user_id int,                                                                                                         movie_id int,                                                                                                        time timestamp                                                                                                       );
@@ -151,6 +153,37 @@ CREATE TABLE Directs (
 -- join movies m on m.id = r.movie_id 
 -- where u.username = 'jane.doe'
 -- group by u.username, m.genre
+
+-- 19. What are the average movie ratings for each language? (Administrator)
+
+-- select m.language, ROUND(avg(r.score),2)
+-- from appuser u
+-- join rating r on u.id = r.user_id 
+-- join movies m on r.movie_id = m.id
+-- group by m.language
+
+
+-- Q3 Demo Statements:
+
+-- 14
+-- Who is the biggest hater on the app? (lowest average rating, min 10 ratings). (Administrator)
+
+-- SELECT r.user_id, u.username,ROUND(avg(score),2) 
+-- FROM Rating r 
+-- join appUser u on u.id = r.user_id
+-- GROUP BY r.user_id, u.username 
+-- ORDER BY avg(score) ASC;
+
+--8 Which actor has appeared in the most films in the last 5 years? (User)
+
+-- SELECT a.id, a.firstName, a.lastName
+-- FROM Actors a, Role r, Movies m
+-- WHERE a.id = r.actor_id
+-- AND m.id = r.movie_id
+-- AND m.release >= '03-06-2018'
+-- GROUP BY a.id, a.firstName, a.lastName
+-- ORDER BY count(m.id) DESC
+-- LIMIT 1;
 
 -- 19. What are the average movie ratings for each language? (Administrator)
 
