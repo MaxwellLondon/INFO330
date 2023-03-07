@@ -111,3 +111,28 @@ CREATE TABLE Directs (
 -- WHERE m.id = r.movie_id
 -- AND u.id = r.user_id
 -- ORDER BY cast(m.runtime as INTEGER) desc;
+
+-- --5
+-- How many hours did austenfan spend watching horror movies in 2022? (Administrator)
+
+-- SELECT u.user_id, sum(m.runtime) FROM Rating r
+-- LEFT JOIN appUser u ON r.user_id = a.id LEFT JOIN Movies m ON r.movie_id = m.id 
+-- WHERE u.user_id = 'austenfan' AND m.genre = 'horror';
+
+-- 14
+-- Who is the biggest hater on the app? (lowest average rating, min 10 ratings). (Administrator)
+
+-- SELECT r.user_id, u.username,ROUND(avg(score),2) 
+-- FROM Rating r 
+-- join appUser u on u.id = r.user_id
+-- GROUP BY r.user_id, u.username 
+-- ORDER BY avg(score) ASC;
+
+-- -- 15
+-- -- What are the top 5 highest reviewed genres on the app? (User)
+
+-- SELECT m.genre, count(r.rating_id) as num_ratings 
+-- FROM Rating r
+-- LEFT JOIN Movies m ON r.movie_id = m.id
+-- GROUP BY m.genre
+-- ORDER BY count(r.rating_id) DESC;
